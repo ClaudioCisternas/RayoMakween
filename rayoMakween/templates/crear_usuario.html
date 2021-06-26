@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'ccs/registro.css' %}">
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'lib/jquery.js' %}"></script>
+    <script src="{% static 'dist_jqv/jquery.validate.min.js' %}"></script>
+{% endblock css %}
+    
+{% block contenido %}
+    <!--bienvenida registro-->
+    <body background="{% static 'img/fondocontacto.jpg' %}">
+        <section id="bienvenida-reg">
+            <h2>Registrar nuevo Usuario</h2>
+        </section>       
+        <!--registo-->
+        <section id="registro">
+
+            <form class="reg-registro" id="regis" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2 class="reg-titulo">Crear una cuenta</h2>
+
+                <div class="contenedor-inp">
+                    <input class="col-100" type="text" name="txtNombre" id="txtNombre" placeholder="ingrese nombre" minlenght="3"
+                        maxlength="25" required pattern="{3,25}" title="largo mínimo de 3 y máximo de 25">
+
+                    <input class="col-100" type="text" name="txtApellido" id="txtApellido" placeholder="ingrese apellido" minlenght="3"
+                        maxlength="25" required pattern="{3,25}" title="largo mínimo de 3 y máximo de 25">    
+                     
+                    <input class="col-100" type="email" name="txtEmail" id="txtEmail" required placeholder="ingrese correo electrónico">
+
+                    <input class="col-100" type="text" name="txtUsuario" id="txtUsuario" required placeholder="ingrese nombre de usuario">
+
+                    <input class="col-100" type="password" name="txtPass1" id="txtPass1" required placeholder="ingrese password">    
+
+                    <input class="col-100" type="password" name="txtPass2" id="txtPass2" required placeholder="repita la password">
+                    
+
+                    <input class="btn-enviar" type="submit" value="Registrar">
+                    <input class="btn-enviar" type="reset" value="limpiar">
+                
+                </div>
+            </form>
+            <div style="text-align: center;color: rgb(255, 136, 0);font-size: xx-large;">
+                {{mensaje}}
+            </div>
+        </section>
+        <!--listado-->
+        <section>
+            <div id="listado">
+
+            </div>
+        </section>
+{% endblock contenido %}
+
+{% block js %}
+    <script src="js/formulario.js"></script>
+    <script src="js/proceso.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            
+        });
+    </script>
+{% endblock js %}

@@ -1,0 +1,26 @@
+
+#blog .contenedor img{
+    width: 250px;
+    height: 250px;
+    border: solid 5px rgb(240, 177, 84);
+    border-radius: 50%;
+}
+
+#blog .contenedor img:hover{
+    filter: opacity(0.5);
+}
+
+#blog{
+    font-family: fantasy;
+    text-align: center;
+}
+
+#blog .contenedor{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#blog .contenedor article{
+    margin: 15px;
+}

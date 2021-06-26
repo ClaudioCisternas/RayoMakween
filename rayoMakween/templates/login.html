@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'ccs/registro.css' %}">
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'lib/jquery.js' %}"></script>
+    <script src="{% static 'dist_jqv/jquery.validate.min.js' %}"></script>
+{% endblock css %}
+    
+{% block contenido %}
+    <!--bienvenida registro-->
+    <body background="{% static 'img/fondocontacto.jpg' %}">
+        <section id="bienvenida-reg">
+            <h2>Autentificación de Usuario</h2>
+        </section>       
+        <!--registo-->
+        <section id="registro">
+
+            <form class="reg-registro" action="{% url 'LOGIN' %}" method="POST">
+                {% csrf_token %}
+                <h2 class="reg-titulo">Login de Acceso</h2>
+
+                <div class="contenedor-inp">
+                    <input class="col-100" type="text" name="txtNombre" id="txtNombre" placeholder="ingrese Usuario" minlenght="3"
+                        maxlength="45" required pattern="{3,45}" title="largo mínimo de 3 y máximo de 45">
+                     
+                    <input class="col-100" type="password" name="txtPass" id="txtPass" placeholder="ingrese Password">
+
+                    <input class="btn-enviar" type="submit" value="Login">
+                    <input class="btn-enviar" type="reset" value="Limpiar">
+             
+                </div>
+            </form>
+
+
+{% endblock contenido %}

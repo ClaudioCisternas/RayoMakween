@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'ccs/contacto.css' %}">
+<script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'lib/jquery.js' %}"></script>
+<script src="{% static 'dist_jqv/jquery.validate.min.js' %}"></script>
+{% endblock css %}
+
+
+{% block contenido %}
+
+<body background="{% static 'img/fondocontacto.jpg' %}">
+
+    <div class="menu">
+        <h2 class="contactanos"style="color: rgb(255, 136, 0);">CONTACTANOS</h2>
+        <h4 class="text2">AQUÍ SIEMPRE ESTAMOS DISPONIBLES.</h4>
+    </div>
+    
+    <section id="contacto"></section>
+        <form class="form-contacto" id="conta" action="{% url 'CONT' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-mensaje">
+                <input class="controls" type="text" name="txtNombre" id="txtNombre" placeholder="Nombre">
+                <input class="controls" type="email" name="txtCorreo" id="txtCorreo" placeholder="Correo">
+                <input class="controls" type="text" name="txtFono" id="txtFono" placeholder="Teléfono" required maxlength="10" pattern="[0-9]{9}" title="ingrese un teléfono ej. 897534682">
+                <textarea class="controls" style="margin-top: 15px;" name="txtMens" id="txtMens" placeholder="Mensaje*"></textarea>
+                <input class="boton" type="submit" value="Enviar">
+                <input class="btn-enviar" type="reset" value="limpiar">
+                <p><b>{{comentario}}</b></p>
+            </div>
+        </form>
+    </section>
+
+    <section>
+        <div class="redes-sociales"><img src="{% static 'img/img1.png' %}" alt="logo-footer">
+            <div class="whatsapp">
+                <a href="#" img><img src="{% static 'img/whatsapp.png' %}" width="40" height="40" alt="whatsapp"></a>
+            </div>
+            <div class="instagram">
+                <a href="#"><img src="{% static 'img/instagram.png' %}" width="40" height="40" alt="instagram"></a>
+            </div>
+            <div class="facebook">
+                <a href="#"><img src="{% static 'img/facebook.png' %}" width="40" height="40" alt="facebook"></a>
+            </div>
+            <div class="twitter">
+                <a href="#"><img src="{% static 'img/twitter.png' %}" width="40" height="40" alt="twitter"></a>
+            </div>
+            <div class="horarioat">
+                <div>
+                    <h3 class="horario-a">Horario de Atención</h3>
+                </div>
+                <ul>
+                    <li>
+                        <span style="font-size: 16px;">
+                            <span style="font-family: calibri;">Lunes a Viernes de 09:00 a 20:30</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span style="font-size: 16px;">
+                            <span style="font-family: calibri;">Sabado hasta las 14:00 y Domingo Cerrado</span>
+                        </span>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="contacto">
+                <ul>
+                    <li class="numero">+56945778892</li>
+                    <li class="email">tallerrayomakween@gmail.com</li>
+                    <li class="direccion">Avenida Concha Y Toro, Av. San Carlos 1340, Puente Alto, Region Metropolitana
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+{% endblock contenido %}

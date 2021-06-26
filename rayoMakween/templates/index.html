@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<!--bienvenida-->
+<body background="{% static 'img/fondocontacto.jpg' %}">
+<section id="bienvenida">
+    <h2>Bienvenido <b>{{user.username}}</b> al Taller Rayo Makween</h2>
+    <p>Seleccione el tipo de trabajo</p>
+    <select name="cboTipo" id="cboTipo" onchange="ir_filtro_tipo_boton()">
+        <option value="seleccione">seleccione</option>
+        {% for item in lista %}
+        <option value="{{item}}">{{item}}</option>
+        {% endfor %}
+    </select>
+    <form action="{% url 'FILTROM' %}" style="margin-top: 15px;" method="post">
+        {%csrf_token%}
+        Buscar trabajos por Mecánico:
+        <input type="text" name="txtTexto" id="txtTexto">
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <h2 style="margin-top: 25px;">¿POR QUÉ RAYO MAKWEEN?</h2>
+</section>
+<!--blog-->
+<section id="blog">
+    <div class="contenedor" style="color: rgb(255, 136, 0);">
+        <article>
+            <img src="{% static 'img/img5.jpg' %}" alt="">
+            <h4>Transparencia</h4>
+            <p>Transparencia en todos nuestros trabajos, confía en nosotros.</p>
+        </article>
+        <article>
+            <img src="{% static 'img/img6.jpg' %}" alt="">
+            <h4>Comodidad</h4>
+            <p>Tenemos distintos métodos de pago para la comodidad de tu bolsillo.</p>
+        </article>
+        <article>
+            <img src="{% static 'img/img7.png' %}" alt="">
+            <h4>Respondemos</h4>
+            <p>Respondemos de forma inmediata a cualquier tipo de duda, reclamo o sugerencia.</p>
+        </article>
+        <article>
+            <img src="{% static 'img/img8.jpg' %}" alt="">
+            <h4>Calidad</h4>
+            <p>todos nuestros trabajos son con materiales de calidad.</p>
+        </article>
+    </div>
+</section>
+<!--marca-->
+<section id="marca">
+    <h2>MARCAS QUE REPARAMOS</h2>
+    <div class="contenedor">
+        <div class="marca-au">
+            <img src="{% static 'img/img9.png' %}" alt="">
+            <h4>PORSHE</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img10.png' %}" alt="">
+            <h4>TOYOTA</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img11.png' %}" alt="">
+            <h4>TESLA</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img12.png' %}" alt="">
+            <h4>FERRARI</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img13.png' %}" alt="">
+            <h4>LAMBORGHINI</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img14.png' %}" alt="">
+            <h4>AUDI</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img15.png' %}" alt="">
+            <h4>JAGUAR</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img16.png' %}" alt="">
+            <h4>CHEVROLET</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img17.png' %}" alt="">
+            <h4>PEUGEOT</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img18.png' %}" alt="">
+            <h4>NISSAN</h4>
+        </div>
+        <div class="marca-au">
+            <img src="{% static 'img/img19.png' %}" alt="">
+            <h4>BMW</h4>
+        </div>
+    </div>
+</section>
+<!--carrusel de últimos trabajos-->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'img/img2.jpg' %}" class="d-block w-100" height="550px" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Últimos trabajos de Rayo Makween</h5>
+            </div>
+        </div>
+
+        {% for reg in trabajos %}
+        <div class="carousel-item">
+            <img src="{{reg.imagen.url}}" class="d-block w-100" height="550px" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>{{reg.nombre}}</h5>
+                <p>{{reg.diagnostico}}</p>
+                <button class="btn btn-primary" onclick="javascript:location.href='/detalle/{{reg.nombre}}/'">Ver
+                    Ficha</button>
+            </div>
+        </div>
+        {% endfor %}
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!--quiénes somos-->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Información Importante</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem voluptates voluptas dolor
+                    earum,
+                    assumenda nesciunt soluta quidem fugit recusandae praesentium debitis rerum officiis deleniti
+                    blanditiis
+                    sint dicta nostrum aperiam ea.</p>
+            </div>
+            <div class="col">
+                <h3>Quiénes Somos</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex veritatis cum placeat excepturi sit.
+                    Illo,
+                    quae. Odit magnam nostrum asperiores voluptatibus distinctio nesciunt neque, dolor unde
+                    perferendis,
+                    veritatis nisi odio?</p>
+            </div>
+            <div class="col">
+                <h3>Ubicación</h3>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13293.067069136423!2d-70.5785959!3d-33.5983822!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x893f58a1479b8f82!2sDuoc%20UC%3A%20Sede%20Puente%20Alto!5e0!3m2!1ses!2scl!4v1619943609129!5m2!1ses!2scl"
+                    width="500" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        function ir_filtro_tipo_boton() {
+            var tipo = document.getElementById("cboTipo").value;
+            if (tipo != "seleccione") {
+                location.href = "/filtro_tipo_trabajo/" + tipo + "/";
+            }
+
+        }
+    </script>
+    {% endblock contenido %}

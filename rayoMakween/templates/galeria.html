@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'dist/css/lightbox.min.css' %}">
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock css %}
+
+{% block contenido %}
+<!--bienvenida-->
+<body background="{% static 'img/fondocontacto.jpg' %}">
+<section id="bienvenida">
+    <h2>Galeria de nuestros trabajos</h2>
+
+    <form action="{% url 'FILTROT' %}" method="post">
+        {%csrf_token%}
+        Filtro por Categoria:
+        <select name="cboTipo" id="cboTipo">
+            {% for reg in tipos %}
+            <option>{{reg.nombre}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <form action="{% url 'FILTROM' %}" method="post">
+        {%csrf_token%}
+        Filtro por palabras claves:
+        <input type="text" name="txtTexto" id="txtTexto">
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <input type="button" value="Listar Todo" onclick="javascript:location.href='/galeria/'">
+
+    <input type="button" value="Electrónica Automotriz" onclick="javascript:location.href='/filtro_tipo_trabajo/Electrónica Automotriz'">
+    <input type="button" value="Cajas de Cambio" onclick="javascript:location.href='/filtro_tipo_trabajo/Cajas de Cambio'">
+    <input type="button" value="Suspensión y Dirección" onclick="javascript:location.href='/filtro_tipo_trabajo/Suspensión y Dirección'">
+
+
+</section>
+<!--blog-->
+<section id="blog">
+    <!--consumir un servicio web con JavaScript
+            <input type="button" value="Recuperar Dolar" onclick="recuperaDolar()">
+            <script>
+                function recuperaDolar() {
+                    fetch("https://mindicador.cl/api/dolar")
+                    .then(function (response) {
+                        response.json().then(function (data) {
+                            console.log(data);
+                            var dolar= data.serie[0].valor;
+                            document.getElementById("valor_dolar").innerHTML=dolar;
+                        });
+                    });
+                }
+            </script>
+            <div id="valor_dolar"></div>-->
+
+    <!--recuperar dolar con Jquery-->
+    <input type="button" value="Recuperar Dolar" id="btnRecuperaDolar">
+    <script>
+        $(document).ready(function () {
+            // se realiza de forma automática
+            $.get("https://mindicador.cl/api/dolar", function (data) {
+                var dolar = data.serie[0].valor;
+                $("#valor_dolar").html(dolar);
+            });
+            // proceso por botón
+            $("#btnRecuperaDolar").click(function () {
+
+                $.get("https://mindicador.cl/api/dolar", function (data) {
+                    var dolar = data.serie[0].valor;
+                    $("#valor_dolar").html(dolar);
+                });
+            });
+        });
+    </script>
+    <div id="valor_dolar"></div>
+    <!--recuperar euro con Jquery-->
+    <input type="button" value="Recuperar Euro" id="btnRecuperaEuro">
+    <script>
+        $(document).ready(function () {
+            // se realiza de forma automática
+            $.get("https://mindicador.cl/api/euro", function (data) {
+                var euro = data.serie[0].valor;
+                $("#valor_euro").html(euro);
+            });
+            // proceso por botón
+            $("#btnRecuperaEuro").click(function () {
+
+                $.get("https://mindicador.cl/api/euro", function (data) {
+                    var euro = data.serie[0].valor;
+                    $("#valor_euro").html(euro);
+                });
+            });
+        });
+    </script>
+    <div id="valor_euro"></div>
+
+    <div class="contenedor">
+        {% for reg in trabajos %}
+        <article>
+            <a href="{{reg.imagen.url}}" data-lightbox="trabajos" data-tittle="{{reg.diagnostico}}">
+                <img src="{{reg.imagen.url}}" alt="">
+            </a>
+            <h4 style="color: rgb(255, 136, 0);">{{reg.nombre}}</h4>
+            <h3>
+                <a href="{% url 'DT' reg.nombre %}">Ver Ficha</a>
+            </h3>
+        </article>
+        {% endfor %}
+    </div>
+    <div style="text-align: center;color: rgb(255, 136, 0);font-size: xx-large;">
+        {{cantidad}}
+    </div>
+</section>
+
+<!--quiénes somos-->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Información Importante</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem voluptates voluptas dolor
+                earum,
+                assumenda nesciunt soluta quidem fugit recusandae praesentium debitis rerum officiis deleniti
+                blanditiis
+                sint dicta nostrum aperiam ea.</p>
+        </div>
+        <div class="col">
+            <h3>Quiénes Somos</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex veritatis cum placeat excepturi sit.
+                Illo,
+                quae. Odit magnam nostrum asperiores voluptatibus distinctio nesciunt neque, dolor unde
+                perferendis,
+                veritatis nisi odio?</p>
+        </div>
+        <div class="col">
+            <h3>Ubicación</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13293.067069136423!2d-70.5785959!3d-33.5983822!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x893f58a1479b8f82!2sDuoc%20UC%3A%20Sede%20Puente%20Alto!5e0!3m2!1ses!2scl!4v1619943609129!5m2!1ses!2scl"
+                width="500" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}
+
+{% block js %}
+<script src="{% static 'dist/js/lightbox-plus-jquery.min.js' %}"></script>
+{% endblock js %}

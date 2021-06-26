@@ -1,0 +1,24 @@
+
+#marca{
+    background: #333;
+    color: rgb(240, 177, 84);
+    font-family: fantasy;
+    text-align: center;
+    padding: 15px;
+}
+
+.marca-au img{
+    width: 180px;
+    height: 180px;
+    border: solid 7p white;
+}
+
+#marca .contenedor{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.marca-au{
+    margin: 15px;
+}

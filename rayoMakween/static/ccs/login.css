@@ -1,0 +1,58 @@
+#login{
+    background: brown;
+    padding: 45px;
+}
+
+.log-titulo{
+    background:#333;
+    color: rgb(255, 238, 0);
+    padding: 25px;
+    text-align: center;
+    font-family: fantasy;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: solid 4px rgb(255, 238, 0);
+}
+
+.log-registro{
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+    background: rgb(240, 177, 84);
+    border-radius: 10px;
+}
+
+.contenedor-inp{
+    padding: 10px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+input {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: solid 1px gray;
+}
+
+.col-100{
+    width: 100%;
+}
+
+.btn-enviar{
+    background: brown;
+    color: rgb(255, 238, 0);
+    margin: auto;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+#bienvenida-log{
+    padding: 15px;
+    height: 150px;
+    text-align: center;
+    font-family: fantasy;
+    color: brown;
+    background: rgb(240, 177, 84);
+}

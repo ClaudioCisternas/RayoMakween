@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Rayo Makween</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="ccs/estilo.css">
+    <link rel="stylesheet" href="ccs/registro.css">
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script src="lib/jquery.js"></script>
+    <script src="dist_jqv/jquery.validate.min.js"></script>
+</head>
+
+<body>
+    
+
+    <script>
+        $(document).ready(function() {
+            
+            //efectuar proceso de validación
+            $("#regis").validate({
+                rules:{
+                    txtNombre : "required" ,
+                    txtApellido : {
+                        required : true,
+                        minlength : 2
+                    },
+                    txtPass1:{
+                        required: true,
+                        minlength: 5,
+                        maxlength: 12
+                    },
+                    txtPass2: {
+                        required:true,
+                        minlength: 5,
+                        maxlength: 12,
+                        equalTo: "txtPass1"
+                    }
+                },
+                messages:{
+                    txtNombre : "el nombre es requerido",
+                    txtApellido : {
+                        required : "el apellido es requerido",
+                        minlength : "minimo largo de 2 caracteres"
+                    },
+                    txtPass1: {
+                        required: "la contraseña es requerida",
+                        minlength: "minimo largo de 5 caracteres"
+                    },
+                    txtRut:{
+                        required: "el rut es necesario",
+                        minlength: "minimo largo de 9 caracteres"
+                    }
+                }
+            });
+
+        });
+    </script>
+    <!--barra de navegación-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="img/img1.png" alt="">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="galeria.html">Galeria</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Servicios
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Electrónica Automotriz</a></li>
+                            <li><a class="dropdown-item" href="#">Cajas de Cambio</a></li>
+                            <li><a class="dropdown-item" href="#">Suspensión y Dirección</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <a href="login.html" button class="btn-outline-success">Login</button></a>
+                    <a href="registro.html" button class="btn-outline-successr">Registrarse</button></a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!--cuerpo página-->
+    <main>
+        <!--carrusel-->
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/img2.jpg" class="d-block w-100" height="550px" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Electrónica Automotriz</h5>
+                        <p>desarrollo de sistemas electrónicos y eléctricos especialmente diseñados para ir
+                            instalados en el automóvil, todos los sistemas
+                            desarrollados en autotrónica están adaptados para soportar las duras condiciones de
+                            funcionamiento en un automóvil.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/img3.jpg" class="d-block w-100" height="550px" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Cajas de Cambio</h5>
+                        <p>La caja de cambios permite que las ruedas dispongan siempre del par motor suficiente para
+                            mover de manera óptima nuestro automóvil.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/img4.jpg" class="d-block w-100" height="550px" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Suspensión y Dirección</h5>
+                        <p>Los sistemas de dirección y suspensión son sistemas clave relacionados con la seguridad
+                            que determinan en gran parte la conducción y maniobrabilidad de su automóvil.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!--bienvenida registro-->
+        <section id="bienvenida-reg">
+            <h2>Registrarse</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet fuga iste molestiae eum id, repellendus
+                assumenda, vel at totam, qui accusamus blanditiis? Quibusdam est commodi iste, nam excepturi error
+                quidem?</p>
+        </section>
+        <script src="js/formulario.js"></script>
+        <script src="js/proceso.js"></script>
+        <!--registo-->
+        <section id="registro">
+            <form class="reg-registro" id="regis" action="" method="POST" >
+                <h2 class="reg-titulo">Crear una Cuenta</h2>
+                <div class="contenedor-inp">
+                    <input class="col-48" type="text" name="txtNombre" id="txtNombre" placeholder="ingrese nombre" maxlength="45" 
+                        pattern="[A-Za-z ]{3,45}" title="solamente caracteres de 3 a 45 letras">
+                    <input class="col-48" type="text" name="txtApellido" id="txtApellido" placeholder="ingrese apellido"  maxlength="45" 
+                        pattern="[A-Za-z]{3,45}" title="solamente caracteres de 3 a 45 letras">
+                    <input class="col-48" type="date" name="txtFechaNac" id="txtFechaNac" required>
+                    <input class="col-48" type="email" name="txtEmail" id="txtEmail" placeholder="ingrese correo" 
+                       required minlength="7">
+                    <input class="col-100" type="text" name="txtUsuario" id="txtUsuario" placeholder="ingrese usuario" 
+                       required minlength="5" maxlength="10">
+                    <input class="col-48" type="password" name="txtPass1" id="txtPass1" placeholder="ingrese contraseña" >
+                    <input class="col-48" type="password" name="txtPass2" id="txtPass2" placeholder="ingrese nuevamente la contraseña">   
+                    <input class="col-48" type="text" name="txtRut" id="txtRut" placeholder="ingrese rut" 
+                       required minlength="7">
+                    <input class="col-48" type="text" name="txtFono" id="txtFono" placeholder="ingrese teléfono" 
+                       required maxlength="10" pattern="[0-9]{9}" title="ingrese un teléfono ej. 897534682">
+                    
+                    <input class="btn-enviar" type="submit" value="Registrar">
+                    
+                    <input class="btn-enviar" type="reset" value="limpiar">
+                    
+                    <!--input class="btn-enviar" type="button" id="btnGuardar" value="Guardar">
+                    <input class="btn-enviar" type="button" onclick="listar()" value="Leer">
+                    <input class="btn-enviar" type="button" value="Validar" onclick="validar()">-->
+                </div>
+            </form>
+
+        </section>
+        <!--listado-->
+        <section>
+            <div id="listado">
+
+            </div>
+        </section>
+    </main>
+    <!--pie de página-->
+    <footer>
+        <h2>Taller Mecánico Rayo Makween</h2>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

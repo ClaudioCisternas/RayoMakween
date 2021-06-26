@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<!--bienvenida-->
+<section id="bienvenida">
+    <h2>Ficha del trabajo</h2>
+    <!--blog-->
+    <section id="blog">
+        <h3>Información del trabajo</h3>
+        <div class="contenedor">
+            <article>
+                <img src="{{trabajo.imagen.url}}" alt="">
+                <h4>Nombre:{{trabajo.nombre}}</h4>
+                <h4>Diagnóstico:{{trabajo.diagnostico}}</h4>
+                <h4>Fecha:{{trabajo.fecha}}</h4>
+                <h4>Materiales:{{trabajo.materiales}}</h4>
+                <h4>Mecánico:{{trabajo.mecanico}}</h4>
+                <h4>Categoria:{{trabajo.tipo.nombre}}</h4>
+            </article>
+
+            <div style="width: 350px; height: 350px;margin-top: 15px;">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/logo.jpg' %}" class="d-block w-100" height="450px" alt="...">
+                        </div>
+                        {% for reg in galeria %}
+                        <div class="carousel-item">
+                            <img src="{{reg.imagen.url}}" class="d-block w-100" height="450px" alt="...">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h4>Galeria de Imagenes de trabajo {{trabajo.nombre}}, Cantidad: {{cantidad}} </h4>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" onclick="javascript:location.href='/registro/'">Volver</button>
+        </div>
+    </section>
+
+
+    {% endblock contenido %}
