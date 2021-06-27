@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rayoMakween'
+    'rayoMakween',
+    'api',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
