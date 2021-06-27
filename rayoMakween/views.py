@@ -1,3 +1,4 @@
+from django.http import response
 from django.shortcuts import render
 # importar las tablas para trabajar en la views
 from .models import TipoTrabajo, Trabajo, Galeria, Contacto
@@ -7,6 +8,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout,login as login_autent
 #importar libreria de decoradores para autentificación
 from django.contrib.auth.decorators import login_required,permission_required
+
+#permite consumir servicios por medio de HTTP
+import requests
 
 # Create your views here.
 def crear_usuario(request):
@@ -39,6 +43,11 @@ def index(request):
     lista = ["Electrónica Automotriz","Cajas de Cambio","Suspensión y Dirección"]
     trabajos = Trabajo.objects.filter(publicar=True).order_by('-nombre')[:3]
     variable = {"trabajos": trabajos,"nombre":"juanito","lista":lista}
+    #consumir la api############################
+    response = requests.get("http://127.0.0.1:8433/api/trabajos/")
+    listado_trabajos = response.json()
+    variable["listado_api"]=listado_trabajos
+    ############################################
     return render(request, "index.html",variable)
 
 def cerrar_sesion(request):

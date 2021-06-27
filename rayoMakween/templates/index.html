@@ -176,5 +176,33 @@
             }
 
         }
-    </script>
+    </script>   
+    <section>
+        <div style="text-align: center;font-size: xx-large;">Listado desde la Api
+            <div>
+                <table class="table" style="color:white">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Diagnostico</th>
+                            <th>Fecha</th>
+                            <th>Materiales</th>
+                            <th>Comentario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg in listado_api %}
+                        <tr>
+                            <td>{{reg.nombre}}</td>
+                            <td>{{reg.diagnostico}}</td>
+                            <td>{{reg.fecha}}</td>
+                            <td>{{reg.materiales}}</td>
+                            <td>{{reg.comentario}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section> 
     {% endblock contenido %}

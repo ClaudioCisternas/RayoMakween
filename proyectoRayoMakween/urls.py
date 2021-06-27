@@ -21,6 +21,7 @@ from django.conf.urls.static import static #importar libreria de direcciones est
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('rayoMakween.urls')),
+    path('',include('api.urls')),
 ]
 
 #incluir en el urlpatterns el nombre y dirección de la carpeta media
